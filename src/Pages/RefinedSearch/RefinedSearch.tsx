@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+import { RefinedSearchWrapper } from './RefinedSearch.styled';
 const RefinedSearch = () => {
-  return (
-    <div>
 
-    </div>
+  return (
+    <RefinedSearchWrapper>
+      test
+    </RefinedSearchWrapper>
   )
 }
 

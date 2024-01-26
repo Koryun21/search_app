@@ -1,12 +1,18 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {lazy} from "react";
+import MainLayout from './layouts/MainLayout';
 
 const RefinedSearch = lazy(() => import('../Pages/RefinedSearch'))
 
 const router = createBrowserRouter([
   {
-    path:"/",
-    element:<RefinedSearch/>
+    element:<MainLayout/>,
+    children:[
+      {
+        path:"/",
+        element:<RefinedSearch/>
+      }
+    ]
   }
 ])
 
