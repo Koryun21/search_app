@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
 export const RefinedSearchWrapper = styled.section`
-  padding: 50px 44px;
+  width: 100%;
+  padding: 50px 0;
 `;

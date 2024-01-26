@@ -14,7 +14,7 @@ interface SelectProps {
   options: OptionType[];
   onChange?: (value: OptionType) => void;
   defaultValue?: OptionType;
-  value?: OptionType;
+  value?: OptionType | null;
 }
 
 const Select: React.FC<SelectProps> = ({

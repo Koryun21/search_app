@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   border-radius: 2px;
   cursor: pointer;
   padding: 14px 30px 14px 16px;
-    width: 100%;
+  width: 100%;
 `;
 
 export const SelectedValue = styled.div`
@@ -20,7 +20,7 @@ export const SelectedValue = styled.div`
 
 export const OptionsList = styled.ul<{ $isOpen: boolean }>`
   width: 100%;
-  max-height: 200px;
+  max-height: 300px;
   overflow: auto;
   outline: 1px solid ${({ theme }) => theme.basicColorGrayMedium};
   background-color: ${({ theme }) => theme.basicColorWhite};
