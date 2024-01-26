@@ -11,6 +11,7 @@ export const ButtonStyled = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
 
   font-size: 20px;
   font-weight: 700;

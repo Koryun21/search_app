@@ -3,7 +3,7 @@ import { OptionType } from "./Select.types";
 import Icon from "../Icon";
 import useOutlier from "../../hooks/useOutlier";
 import {
-  Container,
+  Wrapper,
   IconWrapper,
   OptionItem,
   OptionsList,
@@ -40,9 +40,9 @@ const Select: React.FC<SelectProps> = ({
   };
 
   return (
-    <Container ref={outRef}>
-      <SelectedValue onClick={handleToggle}>
-        {selectedValue !== null ? selectedValue.name : "Select an option"}
+    <Wrapper ref={outRef} onClick={handleToggle}>
+      <SelectedValue>
+        {selectedValue !== null ? selectedValue.label : "Выберите вариант"}
         <IconWrapper $isOpen={isOpen}>
           <Icon name="arrowDown" />
         </IconWrapper>
@@ -50,11 +50,11 @@ const Select: React.FC<SelectProps> = ({
       <OptionsList $isOpen={isOpen}>
         {options.map((option) => (
           <OptionItem key={option.id} onClick={() => handleOptionClick(option)}>
-            {option.name}
+            {option.label}
           </OptionItem>
         ))}
       </OptionsList>
-    </Container>
+    </Wrapper>
   );
 };
 
