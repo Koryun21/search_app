@@ -8,9 +8,17 @@ export const RefinedSearchWrapper = styled.section`
   flex-direction: column;
   flex: 1;
   gap: 24px;
+  @media screen and ${({theme}) => theme.media.desktop} {
+      padding: 16px;
+      gap: 8px;
+  }
 `;
 
-export const Devider = styled.hr`
+export const Divider = styled.hr`
   width: 100%;
-  color: ${({theme}) => theme.basicColorGrayMedium};
+  color: ${({theme}) => theme.colors.basicColorGrayMedium};
+
+  @media screen and ${({theme}) => theme.media.desktop} {
+      display: none;
+  }
 `

@@ -79,7 +79,7 @@ const FilterForm: React.FC = () => {
           render={({field:{onChange,value}}) => <Select options={sex} value={value} onChange={onChange} />}
         />
       </Label>
-      <Label label="В возрасте">
+      <Label label="В возрасте" isInline>
         <RangeSelect>
           <SelectBlock>
             От
@@ -115,7 +115,7 @@ const FilterForm: React.FC = () => {
           render={({field:{onChange,value}}) => <Select options={qualification} value={value} onChange={onChange} />}
         />
       </Label>
-      <Label label="Рейтинг">
+      <Label label="Рейтинг" isInline>
         <RangeSelect>
           <SelectBlock>
             От

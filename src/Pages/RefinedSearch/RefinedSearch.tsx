@@ -1,5 +1,5 @@
 import React from "react";
-import { Devider, RefinedSearchWrapper } from './RefinedSearch.styled';
+import { Divider, RefinedSearchWrapper } from './RefinedSearch.styled';
 import FilterForm from "../../widgets/FilterForm";
 import DoctorsGrid from '../../widgets/DoctorsGrid';
 
@@ -7,7 +7,7 @@ const RefinedSearch = () => {
   return (
     <RefinedSearchWrapper>
       <FilterForm />
-      <Devider/>
+      <Divider/>
       <DoctorsGrid/>
     </RefinedSearchWrapper>
   );

@@ -7,9 +7,19 @@ export const Form = styled.form`
   grid-row-gap: 36px;
   width: 100%;
   justify-content: space-between;
+
+  @media screen and ${({theme}) => theme.media.desktop} {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 8px;
+    border: 1px solid ${({theme}) => theme.colors.basicColorGrayMedium};
+    border-radius: 2px;
+  }
 `
 
 export const ButtonWrapper = styled.div`
+  width: 100%;
   align-self: end;
 `
 
@@ -19,6 +29,10 @@ export const RangeSelect = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+
+  @media screen and ${({theme}) => theme.media.desktop} {
+      width: 100%;
+  }
 `
 
 export const SelectBlock = styled.div`
@@ -28,6 +42,19 @@ export const SelectBlock = styled.div`
   width: 50%;
   max-width: 50%;
   min-width: 150px;
+  
+  @media screen and ${({theme}) => theme.media.desktop} {
+    width: 100%;
+    min-width: 280px;
+  }
+
+  @media screen and ${({theme}) => theme.media.tablet} {
+    min-width: 130px;
+  }
+
+  @media screen and ${({theme}) => theme.media.mobileL} {
+      font-size: 14px;
+  }
 `
 
 export const ErrorText = styled.p`

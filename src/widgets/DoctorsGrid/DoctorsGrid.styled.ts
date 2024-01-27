@@ -18,6 +18,25 @@ export const Grid = styled.div`
   grid-column-gap: 20px;
   grid-row-gap: 40px;
   justify-content: space-between;
+  
+  @media screen and ${({theme}) => theme.media.desktop} {
+    grid-template-columns: repeat(auto-fill,minmax(auto, 250px));
+    width: 100%;
+  }
+  @media screen and ${({theme}) => theme.media.tablet} {
+    grid-template-columns: repeat(auto-fill,minmax(auto,190px));
+    grid-column-gap: 10px;
+    grid-row-gap: 25px;
+    align-self: center;
+    width: 100%;
+  }
+  @media screen and ${({theme}) => theme.media.mobileL} {
+    grid-template-columns: repeat(auto-fill,135px);
+    width: 100%;
+    grid-column-gap: 8px;
+    grid-row-gap: 16px;
+
+  }
 `
 
 export const spin = keyframes`
@@ -35,8 +54,8 @@ export const LoaderWrapper = styled.div`
 `;
 
 export const Loader = styled.div`
-  border: 16px solid ${({theme}) => theme.basicColorGrayMedium};
-  border-top: 16px solid ${({theme}) => theme.basicColorWhite}; // Use primary color from colorPalette
+  border: 16px solid ${({theme}) => theme.colors.basicColorGrayMedium};
+  border-top: 16px solid ${({theme}) => theme.colors.basicColorWhite}; // Use primary color from colorPalette
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -50,13 +69,13 @@ export const EmptyWrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex: 1;
-    color: ${({theme}) => theme.basicColorGrayMedium};
+    color: ${({theme}) => theme.colors.basicColorGrayMedium};
 `;
 
 export const EmptyParagraph = styled.p`
     font-size: 20px;
     line-height: 160%;
-    color: ${({theme}) => theme.basicColorBlack};
+    color: ${({theme}) => theme.colors.basicColorBlack};
     text-align: center;
     max-width: 250px;
 `

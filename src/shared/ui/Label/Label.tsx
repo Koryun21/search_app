@@ -3,12 +3,13 @@ import React, { PropsWithChildren } from "react";
 import { LabelStyled, Wrapper } from "./Label.styled";
 interface LabelProps {
   label: string;
+  isInline?: boolean;
 }
 const Label: React.FC<PropsWithChildren<LabelProps>> = (props) => {
-  const { label, children = false } = props;
+  const { label, isInline, children = false } = props;
 
   return (
-    <Wrapper>
+    <Wrapper $isInLine={isInline}>
       <LabelStyled>{label}</LabelStyled>
       {children}
     </Wrapper>
