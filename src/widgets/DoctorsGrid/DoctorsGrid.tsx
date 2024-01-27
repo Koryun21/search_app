@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Wrapper } from "./DoctorsGrid.styled";
+import { EmptyParagraph, EmptyWrapper, Grid, Loader, LoaderWrapper, Wrapper } from './DoctorsGrid.styled';
 import { doctorsModel } from "../../entities";
 import { useAppDispatch, useAppSelector } from "../../shared/hooks";
 import DoctorCard from "../../features/DoctorCard/ui";
 import Button from "../../shared/ui/Button";
 import { useSearchParams } from "react-router-dom";
+import Icon from '../../shared/ui/Icon';
 
 const LIMIT_PER_REQUEST = 12;
+
 
 const DoctorsGrid: React.FC = () => {
   const { isLoading, specialists } = useAppSelector(
@@ -17,6 +19,7 @@ const DoctorsGrid: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
+  const isEmpty = specialists.length === 0
   const handleShowMore = () => {
     const queryParams: Record<string, string> = Object.fromEntries(
       Array.from(searchParams)
@@ -41,7 +44,24 @@ const DoctorsGrid: React.FC = () => {
         ...queryParams,
       })
     );
-  }, [searchParams]);
+  }, [searchParams, dispatch]);
+
+  if (isLoading) {
+    return (
+      <LoaderWrapper>
+        <Loader />
+      </LoaderWrapper>
+    );
+  }
+
+  if (isEmpty) {
+    return (
+      <EmptyWrapper>
+        <Icon name='emptySearch'/>
+        <EmptyParagraph>К сожалению, нет анкет с такими параметрами </EmptyParagraph>
+      </EmptyWrapper>
+    );
+  }
 
   return (
     <Wrapper>

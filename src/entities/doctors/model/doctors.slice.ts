@@ -24,7 +24,6 @@ const doctorsSlice = createSlice({
       state.isLoading = false;
     });
     builder.addCase(getMoreSpecialists.pending,(state, action) => {
-      state.isLoading = true;
     })
     builder.addCase(getMoreSpecialists.fulfilled, (state, action) => {
       state.isLoading = false;

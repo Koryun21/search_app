@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Form = styled.form`
   display: grid;
   grid-template-columns: repeat(3, minmax(auto,320px));
+  grid-column-gap: 10px;
   grid-row-gap: 36px;
   width: 100%;
   justify-content: space-between;
