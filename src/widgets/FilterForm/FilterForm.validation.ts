@@ -1,14 +1,15 @@
 import * as yup from 'yup';
 
 const messages = {
-  age: 'Максимальный возраст должен быть больше минимального возраста',
-  rating: 'Максимальная оценка должна быть больше минимальной оценки'
+  age: 'Максимальный возраст должен быть больше',
+  rating: 'Максимальная оценка должна быть больше'
 };
 
 const selectOptionFragment = yup.object().shape({
   id: (yup.number() || yup.string()).required(),
   label: yup.string().required(),
   value: (yup.number() || yup.string()).required(),
+  isDemo: yup.boolean()
 });
 
 export const schemaFilterForm = yup.object({
@@ -19,7 +20,7 @@ export const schemaFilterForm = yup.object({
     const { value: ageTo } = obj;
     const { value: ageFrom } = this.parent.ageFrom;
     if (ageTo && ageFrom && !isNaN(ageTo) && !isNaN(ageFrom)) {
-      return ageTo > ageFrom;
+      return ageTo >= ageFrom;
     }
     return true;
   }),
@@ -28,9 +29,9 @@ export const schemaFilterForm = yup.object({
     const { value: ratingTo } = obj;
     const { value: ratingFrom } = this.parent.ratingFrom;
     if ((ratingTo || ratingTo===0) && (ratingFrom || ratingFrom === 0) && !isNaN(ratingTo) && !isNaN(ratingFrom)) {
-      return ratingTo > ratingFrom;
+      return ratingTo >= ratingFrom;
     }
     return true;
   }),
-  theme: selectOptionFragment.default(null).nullable()
+  subjectId: selectOptionFragment.default(null).nullable()
 });

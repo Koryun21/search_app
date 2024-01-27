@@ -4,7 +4,6 @@ export const ButtonStyled = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
 
   background-color: ${({ theme }) => theme.secondaryColorPink};
   border-radius: 2px;

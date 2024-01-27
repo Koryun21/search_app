@@ -42,7 +42,7 @@ const Select: React.FC<SelectProps> = ({
   return (
     <Wrapper ref={outRef} onClick={handleToggle}>
       <SelectedValue>
-        {selectedValue !== null ? selectedValue.label : "Выберите вариант"}
+        {selectedValue !== null ? selectedValue.label : "Не важен"}
         <IconWrapper $isOpen={isOpen}>
           <Icon name="arrowDown" />
         </IconWrapper>

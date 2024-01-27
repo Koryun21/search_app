@@ -5,5 +5,5 @@ export enum FilterFormFields {
   AGE_TO = 'ageTo',
   RATING_FROM = 'ratingFrom',
   RATING_TO = 'ratingTo',
-  THEME = 'theme'
+  SUBJECT = 'subjectId'
 }

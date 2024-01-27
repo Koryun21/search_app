@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
   display: grid;
-  border: 1px solid black;
-  grid-template-columns: repeat(3, minmax(auto,350px));
-  grid-column-gap: 80px;
+  grid-template-columns: repeat(3, minmax(auto,320px));
   grid-row-gap: 36px;
+  width: 100%;
+  justify-content: space-between;
 `
 
 export const ButtonWrapper = styled.div`
@@ -20,7 +20,7 @@ export const RangeSelect = styled.div`
   gap: 12px;
 `
 
-export const SelectBlock = styled.p`
+export const SelectBlock = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;

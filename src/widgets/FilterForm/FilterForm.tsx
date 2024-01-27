@@ -12,7 +12,7 @@ import {
 import Label from "../../shared/ui/Label";
 import Select from "../../shared/ui/Select";
 import Button from "../../shared/ui/Button";
-import { gender } from "./FilterForm.constants";
+import { demoCase, qualification, sex } from './FilterForm.constants';
 import { useGetAllThemesQuery } from "../../entities/theme/model/themeApi";
 import {
   generatedAgeRange,
@@ -26,9 +26,7 @@ type FormData = yup.InferType<typeof schemaFilterForm>;
 
 const FilterForm: React.FC = () => {
   const { data: themeData, isLoading } = useGetAllThemesQuery();
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  console.log("searchParams",searchParams.get(FilterFormFields.AGE_FROM));
+  const [_, setSearchParams] = useSearchParams();
 
   const { control, handleSubmit, formState:{errors} } = useForm<FormData>({
     defaultValues:{
@@ -36,8 +34,8 @@ const FilterForm: React.FC = () => {
       [FilterFormFields.AGE_TO]: generatedAgeRange[generatedAgeRange.length -1],
       [FilterFormFields.RATING_FROM]: generatedRatingRange[0],
       [FilterFormFields.RATING_TO]: generatedRatingRange[generatedRatingRange.length -1],
-      [FilterFormFields.SEX]:gender[0],
-      [FilterFormFields.THEME]:null,
+      [FilterFormFields.SEX]:sex[0],
+      [FilterFormFields.SUBJECT]:null,
       [FilterFormFields.PROF_SPECIALITY]:null
     },
     resolver: yupResolver(schemaFilterForm)
@@ -48,18 +46,19 @@ const FilterForm: React.FC = () => {
     if (isLoading || !themeData) {
       return [];
     }
-    return themeData.data.map((theme) => ({
+    const normalizedThemData =  themeData.data.map((theme) => ({
       id: theme.id,
       label: theme.name,
       value: theme.id,
     }));
+    return [demoCase, ...normalizedThemData]
   }, [themeData, isLoading]);
 
   const handleFormSubmit = (data:FormData) => {
     const reshapedData = Object.fromEntries(
       Object.entries(data).reduce<Array<[string,string]>>(
         (acc,[key,valueObj]) => {
-          if(valueObj?.value === undefined || valueObj?.value === null){
+          if(valueObj?.value === undefined || valueObj?.value === null || valueObj.isDemo){
             return acc
           }
           return[...acc,[key, valueObj.value.toString()]];
@@ -74,7 +73,7 @@ const FilterForm: React.FC = () => {
         <Controller
           control={control}
           name={FilterFormFields.SEX}
-          render={({field:{onChange,value}}) => <Select options={gender} value={value} onChange={onChange} />}
+          render={({field:{onChange,value}}) => <Select options={sex} value={value} onChange={onChange} />}
         />
       </Label>
       <Label label="В возрасте">
@@ -102,7 +101,7 @@ const FilterForm: React.FC = () => {
       <Label label="Тема">
         <Controller
           control={control}
-          name={FilterFormFields.THEME}
+          name={FilterFormFields.SUBJECT}
           render={({field:{onChange,value}}) => <Select options={themes} value={value} onChange={onChange}/>}
         />
       </Label>
@@ -110,7 +109,7 @@ const FilterForm: React.FC = () => {
         <Controller
           control={control}
           name={FilterFormFields.PROF_SPECIALITY}
-          render={({field:{onChange,value}}) => <Select options={[]} value={value} onChange={onChange} />}
+          render={({field:{onChange,value}}) => <Select options={qualification} value={value} onChange={onChange} />}
         />
       </Label>
       <Label label="Рейтинг">
