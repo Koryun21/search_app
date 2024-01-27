@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: 'https://freuders-web-api-test-3.azurewebsites.net/api',
   timeout: 10000,
   headers: {
@@ -23,5 +23,3 @@ instance.interceptors.response.use((response) => {
   console.error(error);
   return Promise.reject(error);
 });
-
-export default instance;

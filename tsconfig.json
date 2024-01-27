@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -16,11 +12,38 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "sourceMap": true,
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@src": ["src"],
+      "@hooks/*": ["src/shared/hooks/*"],
+      "@hooks": ["src/shared/hooks"],
+      "@lib/*": ["src/shared/lib/*"],
+      "@lib": ["src/shared/lib"],
+      "@styles/*": ["src/shared/styles/*"],
+      "@styles": ["src/shared/styles"],
+      "@locales/*": ["src/locales/*"],
+      "@locales": ["src/locales"],
+      "@pages/*": ["src/pages/*"],
+      "@pages": ["src/pages"],
+      "@entities/*": ["src/entities/*"],
+      "@entities": ["src/entities"],
+      "@widgets/*": ["src/widgets/*"],
+      "@widgets": ["src/widgets"],
+      "@features/*": ["src/features/*"],
+      "@features": ["src/features"],
+      "@assets/*": ["src/shared/assets/*"],
+      "@assets": ["src/shared/assets"],
+      "@api": ["src/shared/api"],
+      "@api/*": ["src/shared/api/*"]
+    },
+    "noImplicitAny": true,
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"],
 }

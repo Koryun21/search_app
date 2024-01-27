@@ -1,3 +1,3 @@
-import { RootState } from '../../../app/store';
+import { RootState } from '@src/app/store';
 
-export const specialistsSelector = (state: RootState) => ({...state.doctors});
+export const specialistsSelector = (state: RootState) => ({ ...state.doctors });

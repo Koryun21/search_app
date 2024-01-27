@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
 import { Theme } from "../config/types";
 
 export const themeApi = createApi({

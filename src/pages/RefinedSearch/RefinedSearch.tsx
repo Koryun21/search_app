@@ -1,14 +1,16 @@
-import React from "react";
+import React from 'react';
+
+import FilterForm from '@widgets/FilterForm';
+import DoctorsGrid from '@widgets/DoctorsGrid';
+
 import { Divider, RefinedSearchWrapper } from './RefinedSearch.styled';
-import FilterForm from "../../widgets/FilterForm";
-import DoctorsGrid from '../../widgets/DoctorsGrid';
 
 const RefinedSearch = () => {
   return (
     <RefinedSearchWrapper>
       <FilterForm />
-      <Divider/>
-      <DoctorsGrid/>
+      <Divider />
+      <DoctorsGrid />
     </RefinedSearchWrapper>
   );
 };

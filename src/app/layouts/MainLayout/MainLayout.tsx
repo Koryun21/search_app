@@ -1,5 +1,6 @@
-import { MainWrapper } from "./MainLayout.styled";
 import { Outlet } from "react-router-dom";
+
+import { MainWrapper } from "./MainLayout.styled";
 
 const MainLayout = () => {
   return (

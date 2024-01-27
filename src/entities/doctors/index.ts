@@ -1,16 +1,18 @@
-import { getMoreSpecialists, getSpecialists } from './model/doctors.thunk';
-import { specialistsSelector } from './model/doctors.selectors';
+import {
+  specialistsSelector,
+  getMoreSpecialists,
+  getSpecialists,
+} from './model';
 
 export { default as doctorsReducer } from './model';
 
 export default {
-  action: {
-  },
+  action: {},
   thunks: {
     getSpecialists,
-    getMoreSpecialists
+    getMoreSpecialists,
   },
   selectors: {
-    specialistsSelector
+    specialistsSelector,
   },
 };

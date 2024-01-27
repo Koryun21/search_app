@@ -1,4 +1,4 @@
-import { OptionType } from '../../../shared/ui/Select/Select.types';
+import { OptionType } from '@src/shared/ui';
 
 export const demoCase: OptionType = {
   id:'0',

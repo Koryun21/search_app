@@ -1,48 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { EmptyParagraph, EmptyWrapper, Grid, Loader, LoaderWrapper, Wrapper } from './DoctorsGrid.styled';
-import { doctorsModel } from "../../entities";
-import { useAppDispatch, useAppSelector } from "../../shared/hooks";
-import DoctorCard from "../../features/DoctorCard/ui";
-import Button from "../../shared/ui/Button";
-import { useSearchParams } from "react-router-dom";
-import Icon from '../../shared/ui/Icon';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
+import { doctorsModel } from '@entities';
+import { useAppDispatch, useAppSelector } from '@hooks';
+import { DoctorCard } from '@features';
+import { Button, Icon } from '@src/shared/ui';
+
+import {
+  EmptyParagraph,
+  EmptyWrapper,
+  Grid,
+  Loader,
+  LoaderWrapper,
+  Wrapper,
+} from './DoctorsGrid.styled';
 
 const LIMIT_PER_REQUEST = 12;
 
-
 const DoctorsGrid: React.FC = () => {
   const { isLoading, specialists } = useAppSelector(
-    doctorsModel.selectors.specialistsSelector
+    doctorsModel.selectors.specialistsSelector,
   );
   const [offset, setOffset] = useState(0);
   const [searchParams] = useSearchParams();
 
   const dispatch = useAppDispatch();
 
-  const isEmpty = specialists.length === 0
+  const isEmpty = specialists.length === 0;
   const handleShowMore = () => {
     const queryParams: Record<string, string> = Object.fromEntries(
-      Array.from(searchParams)
+      Array.from(searchParams),
     );
     dispatch(
       doctorsModel.thunks.getMoreSpecialists({
         limit: LIMIT_PER_REQUEST.toString(),
         offset: (offset + LIMIT_PER_REQUEST).toString(),
         ...queryParams,
-      })
+      }),
     );
     setOffset((prev) => prev + LIMIT_PER_REQUEST);
   };
 
   useEffect(() => {
     const queryParams: Record<string, string> = Object.fromEntries(
-      Array.from(searchParams)
+      Array.from(searchParams),
     );
     dispatch(
       doctorsModel.thunks.getSpecialists({
         limit: LIMIT_PER_REQUEST.toString(),
         ...queryParams,
-      })
+      }),
     );
   }, [searchParams, dispatch]);
 
@@ -57,8 +64,10 @@ const DoctorsGrid: React.FC = () => {
   if (isEmpty) {
     return (
       <EmptyWrapper>
-        <Icon name='emptySearch'/>
-        <EmptyParagraph>К сожалению, нет анкет с такими параметрами </EmptyParagraph>
+        <Icon name="emptySearch" />
+        <EmptyParagraph>
+          К сожалению, нет анкет с такими параметрами{' '}
+        </EmptyParagraph>
       </EmptyWrapper>
     );
   }
@@ -66,7 +75,7 @@ const DoctorsGrid: React.FC = () => {
   return (
     <Wrapper>
       <Grid>
-        {specialists.map((specialist, index) => {
+        {specialists.map((specialist) => {
           return <DoctorCard key={specialist.userId} {...specialist} />;
         })}
       </Grid>

@@ -1,4 +1,4 @@
-import { Doctor } from '../../../shared/config/types';
+import { Doctor } from '@src/shared/config';
 
 export interface InitialState {
   specialists:Doctor[],

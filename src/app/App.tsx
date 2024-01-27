@@ -1,9 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
+import { ThemeProvider } from 'styled-components';
+
+import { GlobalStyles, theme } from '@styles/global.styles';
+
 import { store } from "./store";
 import Router from "./Router";
-import { GlobalStyles, theme } from '../shared/styles/global.styles';
-import { ThemeProvider } from 'styled-components';
 
 function App() {
   return (

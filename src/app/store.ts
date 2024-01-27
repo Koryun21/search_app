@@ -1,6 +1,7 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { themeApi } from "../entities/theme/model/themeApi";
-import { doctorsReducer } from '../entities/doctors';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
+import { themeApi } from '@entities/theme/model/themeApi';
+import { doctorsReducer } from '@entities/doctors';
 
 const rootReducer = combineReducers({
   doctors: doctorsReducer,

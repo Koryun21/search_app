@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { OptionType } from "./Select.types";
-import Icon from "../Icon";
-import useOutlier from "../../hooks/useOutlier";
+import React, { useState } from 'react';
+
+import { Icon } from '@src/shared/ui';
+import useOutlier from '@hooks/useOutlier';
+
+import { OptionType } from './Select.types';
 import {
   Wrapper,
   IconWrapper,
   OptionItem,
   OptionsList,
   SelectedValue,
-} from "./Select.styled";
+} from './Select.styled';
 
 interface SelectProps {
   options: OptionType[];
@@ -42,7 +44,7 @@ const Select: React.FC<SelectProps> = ({
   return (
     <Wrapper ref={outRef} onClick={handleToggle}>
       <SelectedValue>
-        {selectedValue !== null ? selectedValue.label : "Не важен"}
+        {selectedValue !== null ? selectedValue.label : 'Не важен'}
         <IconWrapper $isOpen={isOpen}>
           <Icon name="arrowDown" />
         </IconWrapper>
