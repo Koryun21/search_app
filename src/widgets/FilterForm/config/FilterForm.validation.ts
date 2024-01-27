@@ -6,9 +6,9 @@ const messages = {
 };
 
 const selectOptionFragment = yup.object().shape({
-  id: (yup.number() || yup.string()).required(),
+  id: yup.lazy(value => (typeof value === 'string' ? yup.string() : yup.number()).required()),
   label: yup.string().required(),
-  value: (yup.number() || yup.string()).required(),
+  value: yup.lazy(value => (typeof value === 'string' ? yup.string() : yup.number()).required()),
   isDemo: yup.boolean()
 });
 
@@ -19,7 +19,7 @@ export const schemaFilterForm = yup.object({
   ageTo: selectOptionFragment.test("ageTo", messages.age, function (obj) {
     const { value: ageTo } = obj;
     const { value: ageFrom } = this.parent.ageFrom;
-    if (ageTo && ageFrom && !isNaN(ageTo) && !isNaN(ageFrom)) {
+    if (ageTo && ageFrom && !isNaN(+ageTo) && !isNaN(ageFrom)) {
       return ageTo >= ageFrom;
     }
     return true;
@@ -28,7 +28,7 @@ export const schemaFilterForm = yup.object({
   ratingTo: selectOptionFragment.test("ratingTo", messages.rating, function (obj) {
     const { value: ratingTo } = obj;
     const { value: ratingFrom } = this.parent.ratingFrom;
-    if ((ratingTo || ratingTo===0) && (ratingFrom || ratingFrom === 0) && !isNaN(ratingTo) && !isNaN(ratingFrom)) {
+    if ((ratingTo || ratingTo===0) && (ratingFrom || ratingFrom === 0) && !isNaN(+ratingTo) && !isNaN(ratingFrom)) {
       return ratingTo >= ratingFrom;
     }
     return true;

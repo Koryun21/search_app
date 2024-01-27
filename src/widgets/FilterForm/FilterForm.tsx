@@ -12,35 +12,22 @@ import {
 import Label from "../../shared/ui/Label";
 import Select from "../../shared/ui/Select";
 import Button from "../../shared/ui/Button";
-import { demoCase, qualification, sex } from './FilterForm.constants';
+import { demoCase, qualification, sex } from './config/FilterForm.constants';
 import { useGetAllThemesQuery } from "../../entities/theme/model/themeApi";
 import {
   generatedAgeRange,
   generatedRatingRange,
 } from "../../shared/lib/generateRange";
-import { FilterFormFields } from "./FilterForm.types";
-import { schemaFilterForm } from './FilterForm.validation';
+import { FilterFormFields } from "./config/FilterForm.types";
+import { schemaFilterForm } from './config/FilterForm.validation';
 import { useSearchParams } from 'react-router-dom';
+import { findDefaultValue } from './lib/findDefaultValue';
 
 type FormData = yup.InferType<typeof schemaFilterForm>;
 
 const FilterForm: React.FC = () => {
   const { data: themeData, isLoading } = useGetAllThemesQuery();
-  const [_, setSearchParams] = useSearchParams();
-
-  const { control, handleSubmit, formState:{errors} } = useForm<FormData>({
-    defaultValues:{
-      [FilterFormFields.AGE_FROM]: generatedAgeRange[0],
-      [FilterFormFields.AGE_TO]: generatedAgeRange[generatedAgeRange.length -1],
-      [FilterFormFields.RATING_FROM]: generatedRatingRange[0],
-      [FilterFormFields.RATING_TO]: generatedRatingRange[generatedRatingRange.length -1],
-      [FilterFormFields.SEX]:sex[0],
-      [FilterFormFields.SUBJECT]:null,
-      [FilterFormFields.PROF_SPECIALITY]:null
-    },
-    resolver: yupResolver(schemaFilterForm)
-  });
-
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const themes = useMemo(() => {
     if (isLoading || !themeData) {
@@ -53,6 +40,22 @@ const FilterForm: React.FC = () => {
     }));
     return [demoCase, ...normalizedThemData]
   }, [themeData, isLoading]);
+
+  const { control, handleSubmit, formState:{errors} } = useForm<FormData>({
+    defaultValues:{
+      [FilterFormFields.AGE_FROM]: findDefaultValue(searchParams.get(FilterFormFields.AGE_FROM),generatedAgeRange),
+      [FilterFormFields.AGE_TO]: findDefaultValue(searchParams.get(FilterFormFields.AGE_TO),generatedAgeRange),
+      [FilterFormFields.RATING_FROM]: findDefaultValue(searchParams.get(FilterFormFields.RATING_FROM),generatedRatingRange),
+      [FilterFormFields.RATING_TO]: findDefaultValue(searchParams.get(FilterFormFields.RATING_TO),generatedRatingRange),
+      [FilterFormFields.SEX]:findDefaultValue(searchParams.get(FilterFormFields.SEX),sex),
+      [FilterFormFields.SUBJECT]:findDefaultValue(searchParams.get(FilterFormFields.SUBJECT),themes),
+      [FilterFormFields.PROF_SPECIALITY]:findDefaultValue(searchParams.get(FilterFormFields.PROF_SPECIALITY),qualification)
+    },
+    resolver: yupResolver(schemaFilterForm)
+  });
+
+
+
 
   const handleFormSubmit = (data:FormData) => {
     const reshapedData = Object.fromEntries(

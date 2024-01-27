@@ -1,10 +1,12 @@
-export const demoCase = {
+import { OptionType } from '../../../shared/ui/Select/Select.types';
+
+export const demoCase: OptionType = {
   id:'0',
   label:'Не важен',
   value:0,
   isDemo:true
 }
-export const sex= [
+export const sex:OptionType[]= [
   {
     id:0,
     label: 'Любого пола',
@@ -23,7 +25,7 @@ export const sex= [
   }
 ]
 
-export const qualification = [
+export const qualification:OptionType[] = [
   demoCase,
   {
     id:1,
