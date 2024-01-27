@@ -9,7 +9,7 @@ import {
   StyledPhoto, Subject,
   Title,
   Wrapper,
-} from './UserCard.styled';
+} from './DoctorCard.styled';
 
 // @ts-ignore
 import  noPhotoMan from '../../../shared/assets/no_photo_man.png';
@@ -37,7 +37,7 @@ interface ProfilePhotoProps {
   "hasVideo"?: boolean
 }
 
-const UserCard:React.FC<ProfilePhotoProps> = (props) => {
+const DoctorCard:React.FC<ProfilePhotoProps> = (props) => {
   const { sex, name , defaultSubjectName,subjectsCount, lastActivityTime, age, rating, photoUrl, onlineStatus } = props;
   const getPhotoReplacement = () => {
     switch (sex){
@@ -79,4 +79,4 @@ const UserCard:React.FC<ProfilePhotoProps> = (props) => {
   );
 }
 
-export default UserCard
+export default DoctorCard
